@@ -1,8 +1,23 @@
 const http = require("http");
 
 const server =  http.createServer((req,res) => {
-    console.log(req.url, req.method, req.headers);
-    // process.exit();
+    const url = req.url;
+
+    if(url === "/"){
+        res.write("<html>");
+        res.write("<head>");
+        res.write("<title>This is NodeJs Server</title>");
+        res.write("</head>");
+        res.write("<body>");
+        res.write('<form action="/text" method="POST">');
+        res.write('<input type="text">');
+        res.write('<button type="submit">submit</button>');
+        res.write("</form>");
+        res.write("</body>");
+        res.write("</html>");
+        return res.end();
+    }
+
     res.setHeader("Content-Type", "text/html");
     res.write("<html>");
     res.write("<head>");
